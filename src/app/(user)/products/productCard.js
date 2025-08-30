@@ -25,13 +25,18 @@ const ProductCard = ({ image, name, price, whatsappPhone, inquiryLink }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 300, borderRadius: 2, p: 1, boxShadow: 3 }}>
+    <Card sx={{ width: "100%", borderRadius: 2, p: 1, boxShadow: 3 }}>
       <CardMedia
         component="img"
-        height="180"
+        height="100"
         image={image}
         alt={name}
-        sx={{ objectFit: "cover", borderRadius: 2 }}
+        sx={{
+          objectFit: "cover",
+          borderRadius: 2,
+          aspectRatio: "1 / 1",
+          width: "100%",
+        }}
       />
       <CardContent>
         <Typography gutterBottom variant="h6" component="div">
@@ -42,7 +47,7 @@ const ProductCard = ({ image, name, price, whatsappPhone, inquiryLink }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Stack direction="row" spacing={1}>
+        <Stack direction="column" spacing={1}>
           <Button
             variant="outlined"
             startIcon={<ContactMailIcon />}
@@ -56,8 +61,6 @@ const ProductCard = ({ image, name, price, whatsappPhone, inquiryLink }) => {
             onClick={handleWhatsAppClick}
             sx={{ bgcolor: "#25D366", color: "#fff" }}
           />
-            
-          {/* </Button> */}
         </Stack>
       </CardActions>
     </Card>
