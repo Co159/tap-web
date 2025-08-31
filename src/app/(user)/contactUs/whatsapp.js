@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const WhatsAppActionButton = ({
-  phone = "919033664653",
+  phone = "91xxxxxxxxxx",
   message = "Hello!",
   label = "WhatsApp",
 }) => {

@@ -1,8 +1,21 @@
+"use client";
 import Image from "next/image";
-import React from "react";
-import logo from "@/assets/Centillion_Logo.png";
+import React, { useEffect, useState } from "react";
+import logo from "@/assets/logo-main.png";
+import CommonSkeleton from "./custom/skeleton";
 
 const Navbar = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate a 2-second loading delay
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer); // cleanup
+  }, []);
+
   return (
     <nav
       style={{
@@ -12,20 +25,24 @@ const Navbar = () => {
         alignItems: "center",
         padding: "0.4rem 0",
         background: "#fff",
-         position: "sticky",
-         top: 0,
+        position: "sticky",
+        top: 0,
         zIndex: 1100,
         boxShadow: "0 2px 4px rgba(0,0,0,0.08)",
       }}
     >
-      <Image
-        src={logo}
-        alt="Logo"
-        width={120}
-        height={60}
-        style={{ objectFit: "contain" }}
-        priority 
-      />
+      {loading ? (
+        <CommonSkeleton type="circle" width={60} height={60} />
+      ) : (
+        <Image
+          src={logo}
+          alt="Logo"
+          width={120}
+          height={60}
+          style={{ objectFit: "contain" }}
+          priority
+        />
+      )}
     </nav>
   );
 };

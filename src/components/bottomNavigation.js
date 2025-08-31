@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -10,11 +9,22 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "@mui/material";
+import CommonSkeleton from "./custom/skeleton";
 
 export default function BottomNav() {
   const theme = useTheme();
   const pathname = usePathname();
   const router = useRouter();
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Simulate a 2-second loading delay
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer); // cleanup
+  }, []);
 
   const navItems = [
     { icon: <HomeIcon />, href: "/" },
@@ -43,44 +53,48 @@ export default function BottomNav() {
         background: "#fff",
       }}
     >
-      <BottomNavigation
-        value={selectedIndex}
-        onChange={(_, newIndex) => {
-          setSelectedIndex(newIndex);
-          router.push(navItems[newIndex].href);
-        }}
-        showLabels={false}
-        sx={{
-          "& .Mui-selected, & .Mui-selected svg": {
-            color: theme.palette.primary.main,
-          },
-        }}
-      >
-        {navItems.map((item, index) => (
-          <BottomNavigationAction
-            key={index}
-            icon={
-              <div style={{ position: "relative", paddingBottom: 6 }}>
-                {item.icon}
-                {selectedIndex === index && (
-                  <span
-                    style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      width: 16,
-                      height: 3,
-                      borderRadius: 2,
-                      backgroundColor: theme.palette.primary.main,
-                    }}
-                  />
-                )}
-              </div>
-            }
-          />
-        ))}
-      </BottomNavigation>
+      {loading ? (
+        <CommonSkeleton type="tex" width="100%" height={50} />
+      ) : (
+        <BottomNavigation
+          value={selectedIndex}
+          onChange={(_, newIndex) => {
+            setSelectedIndex(newIndex);
+            router.push(navItems[newIndex].href);
+          }}
+          showLabels={false}
+          sx={{
+            "& .Mui-selected, & .Mui-selected svg": {
+              color: theme.palette.primary.main,
+            },
+          }}
+        >
+          {navItems.map((item, index) => (
+            <BottomNavigationAction
+              key={index}
+              icon={
+                <div style={{ position: "relative", paddingBottom: 6 }}>
+                  {item.icon}
+                  {selectedIndex === index && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        width: 16,
+                        height: 3,
+                        borderRadius: 2,
+                        backgroundColor: theme.palette.primary.main,
+                      }}
+                    />
+                  )}
+                </div>
+              }
+            />
+          ))}
+        </BottomNavigation>
+      )}
     </nav>
   );
 }

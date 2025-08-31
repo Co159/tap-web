@@ -25,7 +25,7 @@ const ProductCard = ({ image, name, price, whatsappPhone, inquiryLink }) => {
   };
 
   return (
-    <Card sx={{ width: "100%", borderRadius: 2, p: 1, boxShadow: 3 }}>
+    <Card sx={{ width: "100%",height: "100%", borderRadius: 2, p: 1, boxShadow: 3 }}>
       <CardMedia
         component="img"
         height="100"
