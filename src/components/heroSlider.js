@@ -1,17 +1,15 @@
 "use client";
-
 import { Box, IconButton } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-// import bg1 from "../assests/img1.jpg";
-import bg2 from "../assets/bg-2.avif";
-import bg3 from "../assets/bg-3.avif";
-import bg4 from "../assets/bg-4.avif";
-
-const slides = [{ image: bg2 }, { image: bg3 }, {image: bg4}];
+const slides = [
+  { image: "/images/bg-2.avif" },
+  { image: "/images/bg-3.avif" },
+  { image: "/images/bg-4.avif" },
+];
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);

@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import logo from "@/assets/logo-main.png";
 import CommonSkeleton from "./custom/skeleton";
 
 const Navbar = () => {
@@ -35,7 +34,7 @@ const Navbar = () => {
         <CommonSkeleton type="circle" width={60} height={60} />
       ) : (
         <Image
-          src={logo}
+          src="/images/logo-main.png"
           alt="Logo"
           width={120}
           height={60}
